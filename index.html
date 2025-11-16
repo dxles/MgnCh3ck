@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Monitor</title>
+
+    <style>
+        body {
+            background: #0d0d0d;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #viewer {
+            max-width: 95vw;
+            max-height: 95vh;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: black;
+        }
+
+        .loading {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loading" id="loading">Connecting to stream...</div>
+
+    <img id="viewer" src="" alt="Stream will appear here">
+
+    <script>
+        const viewer = document.getElementById("viewer");
+        const loading = document.getElementById("loading");
+
+        // BURAYA kendi Railway domainini yazacaksın:
+        const STREAM_URL = "https://senin-railway-domainin.com/";
+
+        viewer.src = STREAM_URL;
+
+        viewer.onload = () => {
+            loading.style.display = "none";
+        };
+    </script>
+
+</body>
+</html>
