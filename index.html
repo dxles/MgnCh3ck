@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Monitor</title>
-    <style>
-        body {
-            background: #0d0d0d;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        #viewer {
-            max-width: 95vw;
-            max-height: 95vh;
-            border: 2px solid #333;
-            border-radius: 8px;
-            background: black;
-        }
-        .loading {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0.6;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Monitor</title>
+<style>
+body {
+    background: #0d0d0d;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+#viewer {
+    max-width: 95vw;
+    max-height: 95vh;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: black;
+}
+.loading {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.6;
+}
+</style>
 </head>
 <body>
+<div class="loading" id="loading">Connecting to stream...</div>
+<img id="viewer" src="" alt="Stream will appear here">
+<script>
+const viewer = document.getElementById("viewer");
+const loading = document.getElementById("loading");
 
-    <div class="loading" id="loading">Connecting to stream...</div>
-    <img id="viewer" src="" alt="Stream will appear here">
+// Railway domainin
+const STREAM_URL = "https://mgnch3ck-production.up.railway.app/";
 
-    <script>
-        const viewer = document.getElementById("viewer");
-        const loading = document.getElementById("loading");
+viewer.src = STREAM_URL;
 
-        // Railway üzerindeki bot stream linki
-        const STREAM_URL = "https://mgnch3ck-production.up.railway.app/";
+viewer.onload = () => {
+    loading.style.display = "none";
+};
 
-        viewer.src = STREAM_URL;
-
-        viewer.onload = () => {
-            loading.style.display = "none";
-        };
-
-        viewer.onerror = () => {
-            loading.textContent = "Stream bağlantısı kurulamadı!";
-        };
-    </script>
-
+viewer.onerror = () => {
+    loading.textContent = "Stream bağlantısı kurulamadı!";
+};
+</script>
 </body>
 </html>
