@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Monitor</title>
-
     <style>
         body {
             background: #0d0d0d;
@@ -16,7 +15,6 @@
             color: white;
             font-family: Arial, sans-serif;
         }
-
         #viewer {
             max-width: 95vw;
             max-height: 95vh;
@@ -24,7 +22,6 @@
             border-radius: 8px;
             background: black;
         }
-
         .loading {
             position: absolute;
             font-size: 20px;
@@ -35,20 +32,23 @@
 <body>
 
     <div class="loading" id="loading">Connecting to stream...</div>
-
     <img id="viewer" src="" alt="Stream will appear here">
 
     <script>
         const viewer = document.getElementById("viewer");
         const loading = document.getElementById("loading");
 
-        // BURAYA kendi Railway domainini yazacaksın:
-        const STREAM_URL = "https://senin-railway-domainin.com/";
+        // Railway üzerindeki bot stream linki
+        const STREAM_URL = "https://mgnch3ck-production.up.railway.app/";
 
         viewer.src = STREAM_URL;
 
         viewer.onload = () => {
             loading.style.display = "none";
+        };
+
+        viewer.onerror = () => {
+            loading.textContent = "Stream bağlantısı kurulamadı!";
         };
     </script>
 
